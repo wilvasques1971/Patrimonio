@@ -3,6 +3,7 @@ package https.github.com.wilvasques1971.Patrimonio.git.Patrimonio.service;
 
 import https.github.com.wilvasques1971.Patrimonio.git.Patrimonio.model.Patrimonio;
 import https.github.com.wilvasques1971.Patrimonio.git.Patrimonio.repository.PatrimonioRepository;
+import jakarta.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,23 +23,17 @@ public class PatrimonioService {
 
      }
 
-     public Optional<Patrimonio>BuscarPorId(Lond Id){
+     public Optional<Patrimonio>BuscarPorId(Long Id){
 
-         return  repository.findAllById(Id);
+         return  repository.findById(Id);
      }
 
      public  Patrimonio Salvar(Patrimonio patrimonio){
 
          return repository.save(patrimonio);
      }
-
      public  void Deletar(Long id){
          repository.deleteById(id);
-
      }
-
-
-
-
 
 }

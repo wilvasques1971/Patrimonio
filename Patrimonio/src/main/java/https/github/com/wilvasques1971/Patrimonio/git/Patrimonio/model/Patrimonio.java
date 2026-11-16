@@ -6,6 +6,10 @@ import jakarta.persistence.*;
 @Table(name = "tb_patrimonio")
 
 public class Patrimonio {
+    public Patrimonio() {
+
+    }
+
     public Long getId() {
         return Id;
     }

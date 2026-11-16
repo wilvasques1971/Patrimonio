@@ -1,0 +1,45 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib uri="jakarta.tags,core" prefix= "c"%>
+<html>
+<head>
+<title>Lista de Patrimonio </title>
+</head>
+<body>
+<h2>Controle de Patrimonio</h2>
+<a href= "/patrimonio/novo">Cadastro Novo</a>
+<table>
+
+    <thead>
+
+      <th>ID</th>
+      <th>NR PAATRIMONIO</th>
+      <th>DESCRICAO</th>
+      <th>LOCAL</th>
+      <th>ACOES</th>
+
+    </thead>
+
+    <tbody>
+       <c:forEach var="item"items="${listaPatrimonios}">
+          <tr>
+             <td>${item.id}</td>
+             <td>${item.nrPatrimonio}</td>
+             <td>${item.descricao}</td>
+             <td>${item.local}</td>
+
+              <td>
+              <a href="/patrimonios/editar/${item.id}">Editar</a>
+              <a href="/patrimonios/excluir/${item.id}"onclick="return confirm('Deseja Excluir Este Patrimonio?')">Excluir</a>
+             </td>
+
+          </tr>
+</c:forEach>
+   </tbody>
+
+</table>
+
+
+
+
+</body>
+</html>
