@@ -42,12 +42,12 @@ public class PatrimonioController {
         Optional<Patrimonio> patrimonio = service.BuscarPorId(id);
 
         if (patrimonio.isPresent()){
-          model.addAttribute("patrimonio", patrimonio.get());
+            model.addAttribute("patrimonio", patrimonio.get());
             return "formulario";
         }
-        return"redrect:/patrimonios";
+        return "redrect:/patrimonios";
     }
- //Salvar/atualizar patrimonio
+    //Salvar/atualizar patrimonio
     @PostMapping ("/salvar")
     public String salvar(@ModelAttribute ("patrimonio")Patrimonio patrimonio){
         service.Salvar(patrimonio);
@@ -56,7 +56,7 @@ public class PatrimonioController {
     // Excluir patrimonio
     @GetMapping("/excluir/{id}")
 
-     public  String excluir(@PathVariable("id") Long id){
+    public  String excluir(@PathVariable("id") Long id){
         service.Deletar(id);
         return "redirect:/patrimonios";
     }

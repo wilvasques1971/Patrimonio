@@ -12,7 +12,7 @@
     <thead>
 
       <th>ID</th>
-      <th>NR PAATRIMONIO</th>
+      <th>NR PATRIMONIO</th>
       <th>DESCRICAO</th>
       <th>LOCAL</th>
       <th>ACOES</th>
