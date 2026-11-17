@@ -1,64 +1,62 @@
-package https.github.com.wilvasques1971.Patrimonio.git.Patrimonio.controller;
 
+package https.github.com.wilvasques1971.Patrimonio.git.Patrimonio.controller;
 
 import https.github.com.wilvasques1971.Patrimonio.git.Patrimonio.model.Patrimonio;
 import https.github.com.wilvasques1971.Patrimonio.git.Patrimonio.service.PatrimonioService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.Optional;
 
 @Controller
 @RequestMapping("/patrimonios")
-
 public class PatrimonioController {
 
     @Autowired
-
     private PatrimonioService service;
-    //listar todos os patrimonios
 
+    // Listar todos os patrimônios
     @GetMapping
-    public String listar(Model model){
+    public String listar(Model model) {
         model.addAttribute("ListarPatrimonios", service.listarTodos());
-        return "listar";
+        return "Listar";
     }
 
-    // formulario para novo patrimonio
-
+    // Formulário para novo patrimônio
     @GetMapping("/novo")
-
-    public  String novoFormulario(Model model){
-        model.addAttribute("patrimonio",new Patrimonio());
+    public String novoFormulario(Model model) {
+        model.addAttribute("patrimonio", new Patrimonio());
         return "formulario";
     }
 
-    // formulario para editar patrimonio existente
-
+    // Formulário para editar patrimônio
     @GetMapping("/editar/{id}")
+    public String editarFormulario(@PathVariable("id") Long id, Model model) {
 
-    public String editarFormulario(@PathVariable("id") Long id, Model model){
         Optional<Patrimonio> patrimonio = service.BuscarPorId(id);
 
-        if (patrimonio.isPresent()){
+        if (patrimonio.isPresent()) {
             model.addAttribute("patrimonio", patrimonio.get());
             return "formulario";
         }
-        return "redrect:/patrimonios";
+
+        return "redirect:/patrimonios";
     }
-    //Salvar/atualizar patrimonio
-    @PostMapping ("/salvar")
-    public String salvar(@ModelAttribute ("patrimonio")Patrimonio patrimonio){
+
+    // Salvar ou atualizar patrimônio
+    @PostMapping("/salvar")
+    public String salvar(@ModelAttribute("patrimonio") Patrimonio patrimonio) {
         service.Salvar(patrimonio);
         return "redirect:/patrimonios";
     }
-    // Excluir patrimonio
-    @GetMapping("/excluir/{id}")
 
-    public  String excluir(@PathVariable("id") Long id){
+    // Excluir patrimônio
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable("id") Long id) {
         service.Deletar(id);
         return "redirect:/patrimonios";
     }
-
 }
