@@ -1,21 +1,41 @@
+
 package https.github.com.wilvasques1971.Patrimonio.git.Patrimonio.model;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tb_patrimonio")
-
 public class Patrimonio {
-    public Patrimonio() {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "nr_patrimonio", nullable = false, length = 50)
+    private String nr_patrimonio;
+
+    @Column(name = "local", nullable = false, length = 255)
+    private String local;
+
+    @Column(name = "descricao", nullable = false, length = 255)
+    private String descricao;
+
+    public Patrimonio() {
+    }
+
+    public Patrimonio(Long id, String nr_patrimonio, String local, String descricao) {
+        this.id = id;
+        this.nr_patrimonio = nr_patrimonio;
+        this.local = local;
+        this.descricao = descricao;
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getNr_patrimonio() {
@@ -27,11 +47,11 @@ public class Patrimonio {
     }
 
     public String getLocal() {
-        return Local;
+        return local;
     }
 
     public void setLocal(String local) {
-        Local = local;
+        this.local = local;
     }
 
     public String getDescricao() {
@@ -41,27 +61,4 @@ public class Patrimonio {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
-    @Column(name = "nr_patrimonio", nullable = false, length = 50)
-    private String nr_patrimonio;
-
-    @Column(name = "Local", nullable = false, length = 255)
-
-    private String Local;
-
-    @Column(name = "descricao", nullable = false, length = 255)
-    private String descricao;
-
-
-    public Patrimonio(Long id, String nr_patrimonio, String local, String descricao) {
-        Id = id;
-        this.nr_patrimonio = nr_patrimonio;
-        Local = local;
-        this.descricao = descricao;
-    }
 }
-
-

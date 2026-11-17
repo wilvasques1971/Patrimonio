@@ -1,39 +1,58 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@ taglib uri="jakarta.tags,core" prefix= "c"%>
+
+<!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title>Lista de Patrimonio </title>
+    <meta charset="UTF-8">
+    <title>Lista de Patrimônio</title>
 </head>
+
 <body>
-<h2>Controle de Patrimonio</h2>
-<a href="/patrimonio/novo">Cadastro Novo</a>
-<table>
+
+<h2>Controle de Patrimônio</h2>
+
+<a th:href="@{/patrimonios/novo}">Cadastro Novo</a>
+
+<table border="1">
 
     <thead>
-
-    <th>ID</th>
-    <th>NR PATRIMONIO</th>
-    <th>DESCRICAO</th>
-    <th>LOCAL</th>
-    <th>ACOES</th>
-
+    <tr>
+        <th>ID</th>
+        <th>NR PATRIMÔNIO</th>
+        <th>DESCRIÇÃO</th>
+        <th>LOCAL</th>
+        <th>AÇÕES</th>
+    </tr>
     </thead>
 
     <tbody>
-    <c:forEach var="item" items="${listaPatrimonios}">
-        <tr>
-            <td>${item.id}</td>
-            <td>${item.nrPatrimonio}</td>
-            <td>${item.descricao}</td>
-            <td>${item.local}</td>
 
-            <td>
-                <a href="/patrimonios/editar/${item.id}">Editar</a>
-                <a href="/patrimonios/excluir/${item.id}" onclick="return confirm('Deseja Excluir Este Patrimonio?')">Excluir</a>
-            </td>
+    <tr th:each="item : ${ListarPatrimonios}">
 
-        </tr>
-    </c:forEach>
+        <td th:text="${item.id}"></td>
+
+        <td th:text="${item.nr_patrimonio}"></td>
+
+        <td th:text="${item.descricao}"></td>
+
+        <td th:text="${item.local}"></td>
+
+        <td>
+            <a th:href="@{/patrimonios/editar/{id}(id=${item.id})}">
+                Editar
+            </a>
+
+            <a th:href="@{/patrimonios/excluir/{id}(id=${item.id})}"
+               onclick="return confirm('Deseja excluir este patrimônio?')">
+                Excluir
+            </a>
+        </td>
+
+    </tr>
+
     </tbody>
 
 </table>
+
+</body>
+</html>
