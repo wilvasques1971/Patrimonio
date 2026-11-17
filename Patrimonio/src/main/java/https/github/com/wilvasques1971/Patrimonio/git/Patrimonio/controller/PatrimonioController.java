@@ -22,7 +22,7 @@ public class PatrimonioController {
     @GetMapping
     public String listar(Model model){
         model.addAttribute("ListarPatrimonios", service.listarTodos());
-        return "Listar";
+        return "listar";
     }
 
     // formulario para novo patrimonio
